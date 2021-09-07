@@ -63,6 +63,7 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
 
     // Retrofit with Moshi Converter
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
 
     // Glide
@@ -71,5 +72,9 @@ dependencies {
 
     // Material
     implementation 'com.google.android.material:material:1.4.0'
+
+    //Reflect
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.30"
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
 
 }
