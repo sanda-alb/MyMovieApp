@@ -26,6 +26,17 @@
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="#de000000"
+                android:textSize="39sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/poster"
+                tools:text="To Rent" />
+
+            <TextView
                 android:id="@+id/property_type_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

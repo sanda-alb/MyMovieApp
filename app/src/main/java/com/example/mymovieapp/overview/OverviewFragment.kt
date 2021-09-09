@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.mymovieapp.R
+import com.example.mymovieapp.databinding.GridViewItemBinding
 import com.example.mymovieapp.databinding.OverviewFragmentBinding
 
 class OverviewFragment : Fragment() {
@@ -21,7 +22,8 @@ class OverviewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = OverviewFragmentBinding.inflate(inflater)
+//        val binding = OverviewFragmentBinding.inflate(inflater)
+        val binding = GridViewItemBinding.inflate(inflater)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
