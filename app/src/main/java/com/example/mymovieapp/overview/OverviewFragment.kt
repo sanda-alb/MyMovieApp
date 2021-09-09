@@ -12,7 +12,7 @@ import com.example.mymovieapp.databinding.OverviewFragmentBinding
 
 class OverviewFragment : Fragment() {
 
-    private val viewModel: OverviewViewModel by lazy {
+    val viewModel: OverviewViewModel by lazy {
         ViewModelProvider(this).get(OverviewViewModel::class.java)
     }
 
