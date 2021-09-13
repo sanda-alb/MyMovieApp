@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="viewModel"
-            type="com.example.mymovieapp.overview.OverviewViewModel" />
+            name="movieItem"
+            type="com.example.mymovieapp.domain.MovieItem" />
     </data>
 
     <ImageView
@@ -18,5 +18,5 @@
         android:adjustViewBounds="true"
         android:padding="2dp"
         tools:src="@tools:sample/backgrounds/scenic"
-        app:posterUrl="@{viewModel.item.link}"/>
+        app:posterUrl="@{movieItem.posterLink}"/>
 </layout>
