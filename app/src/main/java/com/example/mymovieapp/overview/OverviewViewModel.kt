@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mymovieapp.domain.MovieItem
 import com.example.mymovieapp.network.MovieApi
-import com.example.mymovieapp.network.NetworkMovieContainer
-import com.example.mymovieapp.network.NetworkResults
 import com.example.mymovieapp.network.asDomainModel
 import kotlinx.coroutines.launch
 
@@ -19,14 +17,16 @@ enum class MovieApiStatus { LOADING, ERROR, DONE }
 class OverviewViewModel : ViewModel() {
 
     private val _status = MutableLiveData<MovieApiStatus>()
-
     val status: LiveData<MovieApiStatus>
         get() = _status
 
     private val _movieList = MutableLiveData<List<MovieItem>>()
-
     val movieList: LiveData<List<MovieItem>>
         get() = _movieList
+
+    private val _navigateToSelectedMovie= MutableLiveData<MovieItem>()
+    val navigateToSelectedMovie: LiveData<MovieItem>
+        get() = _navigateToSelectedMovie
 
 
     init {
@@ -45,5 +45,13 @@ class OverviewViewModel : ViewModel() {
                 _movieList.value = ArrayList()
             }
         }
+    }
+
+    fun displayMovieDetails(movieItem: MovieItem) {
+        _navigateToSelectedMovie.value = movieItem
+    }
+
+    fun displayMovieDetailsComplete() {
+        _navigateToSelectedMovie.value = null
     }
 }
