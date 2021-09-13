@@ -1,7 +1,10 @@
 package com.example.mymovieapp.network
 
+import com.example.mymovieapp.domain.MovieItem
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+
+const val BASE_POSTER_URL = "https://image.tmdb.org/t/p/w500"
 
 @JsonClass(generateAdapter = true)
 data class NetworkMovieContainer(val page: Int, val results: List<NetworkResults>)
@@ -50,6 +53,30 @@ val video: Boolean?,
 val voteAverage: Double?,
 
     @Json(name = "vote_count")
-val voteCount: Int?,
+val voteCount: Int?)
 
-    var link: String?)
+/**
+ * Convert Network results to database objects
+ */
+fun NetworkMovieContainer.asDomainModel(): List<MovieItem> {
+    return results.map {
+        MovieItem(
+            adult = it.adult,
+            backdropPath = it.backdropPath,
+            genreIds = it.genreIds,
+            id = it.id,
+            originalLanguage = it.originalLanguage,
+            originalTitle = it.originalTitle,
+            overview = it.overview,
+            popularity = it.popularity,
+            posterPath = it.posterPath,
+            releaseDate = it.releaseDate,
+            title = it.title,
+            video = it.video,
+            voteAverage = it.voteAverage,
+            voteCount = it.voteCount,
+            posterLink =  BASE_POSTER_URL + it.posterPath
+        )
+    }
+}
+
