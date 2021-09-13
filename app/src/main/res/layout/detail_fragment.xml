@@ -5,6 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.mymovieapp.detail.DetailViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,12 +24,13 @@
 
             <ImageView
                 android:id="@+id/poster"
-                android:layout_width="0dp"
-                android:layout_height="266dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:posterUrl="@{viewModel.selectedMovie.posterLink}"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
@@ -34,29 +42,94 @@
                 android:textSize="39sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/poster"
-                tools:text="To Rent" />
+                tools:text="The Suicide Squad" />
+
 
             <TextView
-                android:id="@+id/property_type_text"
+                android:id="@+id/release_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textColor="#de000000"
-                android:textSize="39sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/poster"
-                tools:text="To Rent" />
-
-            <TextView
-                android:id="@+id/price_value_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="#de000000"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/property_type_text"
-                tools:text="$100,000" />
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:text="Release year: " />
+
+            <TextView
+                android:id="@+id/release_year_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/release_year"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:text="2021" />
+
+
+            <TextView
+                android:id="@+id/genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="#de000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/release_year"
+                tools:text="Genre: " />
+
+            <TextView
+                android:id="@+id/genre_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="#de000000"
+                app:layout_constraintStart_toEndOf="@+id/genre"
+                app:layout_constraintTop_toBottomOf="@+id/release_year"
+                tools:text="Action Adventure Comedy" />
+
+            <TextView
+                android:id="@+id/vote_average"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="#de000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genre"
+                tools:text="Average vote: " />
+
+            <TextView
+                android:id="@+id/vote_average_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="#de000000"
+                app:layout_constraintStart_toEndOf="@+id/vote_average"
+                app:layout_constraintTop_toBottomOf="@+id/genre"
+                tools:text="7,4" />
+
+            <TextView
+                android:id="@+id/storyline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="#de000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vote_average"
+                tools:text="Storyline: " />
+
+            <TextView
+                android:id="@+id/storyline_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="#de000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/storyline"
+                tools:text="Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of
+                nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as
+                they are dropped off at the remote, enemy-infused island of Corto Maltese." />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
