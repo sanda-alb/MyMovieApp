@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/brocken.xml" value="0.2175925925925926" />
         <entry key="app/src/main/res/drawable/ic_baseline_broken_image.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable/ic_connection_error.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/loading_animation.xml" value="0.2175925925925926" />
         <entry key="app/src/main/res/drawable/loading_img.xml" value="0.4041666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21979166666666666" />

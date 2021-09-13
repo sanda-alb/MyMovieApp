@@ -14,13 +14,14 @@ import kotlinx.coroutines.launch
 
 const val API_KEY = "bb340add54f4429cc9cb320eeb25ba8c"
 
+enum class MovieApiStatus { LOADING, ERROR, DONE }
 
 class OverviewViewModel : ViewModel() {
 
-    private val _response = MutableLiveData<String>()
+    private val _status = MutableLiveData<MovieApiStatus>()
 
-    val response: LiveData<String>
-        get() = _response
+    val status: LiveData<MovieApiStatus>
+        get() = _status
 
     private val _movieList = MutableLiveData<List<MovieItem>>()
 
@@ -34,12 +35,14 @@ class OverviewViewModel : ViewModel() {
 
     private fun getMovies() {
         viewModelScope.launch {
+            _status.value = MovieApiStatus.LOADING
             try {
                 val movieList = MovieApi.retrofitService.getPopularMovies(API_KEY)
                 _movieList.postValue(movieList.asDomainModel())
-                _response.value = "Success: Movie items retrieved"
+                _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {
-                _response.value = "Failure: ${e.message}"
+                _status.value = MovieApiStatus.ERROR
+                _movieList.value = ArrayList()
             }
         }
     }
