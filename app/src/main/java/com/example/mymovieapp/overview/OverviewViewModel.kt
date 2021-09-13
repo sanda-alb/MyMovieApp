@@ -24,7 +24,7 @@ class OverviewViewModel : ViewModel() {
 
     private val _movieList = MutableLiveData<List<MovieItem>>()
 
-    val item: LiveData<List<MovieItem>>
+    val movieList: LiveData<List<MovieItem>>
         get() = _movieList
 
 
