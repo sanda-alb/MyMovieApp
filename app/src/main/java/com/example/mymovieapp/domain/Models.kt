@@ -1,8 +1,10 @@
 package com.example.mymovieapp.domain
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
-
+@Parcelize
 data class MovieItem(
 
     @Json(name = "adult")
@@ -48,7 +50,7 @@ data class MovieItem(
     val voteCount: Int?,
 
     var posterLink: String
-)
+): Parcelable
 
 
 

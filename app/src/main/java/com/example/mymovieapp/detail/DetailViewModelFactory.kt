@@ -7,8 +7,8 @@ import com.example.mymovieapp.domain.MovieItem
 
 
 class DetailViewModelFactory(
-    val movieItem: MovieItem,
-    val application: Application
+    private val movieItem: MovieItem,
+    private val application: Application
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
