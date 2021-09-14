@@ -1,6 +1,7 @@
 package com.example.mymovieapp
 
 import android.view.View
+import android.widget.TextView
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.mymovieapp.domain.MovieItem
+import com.example.mymovieapp.domain.genreMap
 import com.example.mymovieapp.overview.MovieApiStatus
 import com.example.mymovieapp.overview.PhotoGridAdapter
 
@@ -49,5 +51,14 @@ fun bindStatus(statusImageView: ImageView,
             statusImageView.visibility = View.GONE
         }
     }
+}
 
+@BindingAdapter("movieGenre")
+fun setGenre(txtView: TextView, genreIds: List<Int>) {
+    val genreList = mutableListOf<String>()
+    for (genreId in genreIds) {
+        val genre = genreMap[genreId]
+        genreList.add(genre!!)
+    }
+    txtView.text = genreList.joinToString()
 }

@@ -87,7 +87,8 @@
                 android:textColor="#de000000"
                 app:layout_constraintStart_toEndOf="@+id/genre"
                 app:layout_constraintTop_toBottomOf="@+id/release_year"
-                tools:text="Action Adventure Comedy" />
+                tools:text="Action Adventure Comedy"
+                app:movieGenre="@{viewModel.selectedMovie.genreIds}"/>
 
             <TextView
                 android:id="@+id/vote_average"
