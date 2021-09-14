@@ -1,10 +1,5 @@
 package com.example.mymovieapp.domain
 
-data class Genre(
-    val id: String,
-    val name: String)
-
-
 val genreMap = mapOf(
     28 to "Action",
     12 to "Adventure",

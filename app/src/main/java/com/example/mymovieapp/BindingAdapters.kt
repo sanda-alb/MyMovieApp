@@ -62,3 +62,9 @@ fun setGenre(txtView: TextView, genreIds: List<Int>) {
     }
     txtView.text = genreList.joinToString()
 }
+
+@BindingAdapter("releaseYear")
+fun setReleaseYear(txtView: TextView, releaseDate: String?) {
+    val releaseYear = releaseDate?.substring(0, 4)
+    txtView.text = releaseYear
+}

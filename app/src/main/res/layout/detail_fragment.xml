@@ -57,7 +57,8 @@
                 android:text="@string/release_year" />
 
             <TextView
-                android:id="@+id/release_year_value"
+                android:id="@+id/release_date_value"
+                android:paddingLeft="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -65,7 +66,7 @@
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/release_year"
                 app:layout_constraintTop_toBottomOf="@+id/title"
-                android:text="@{viewModel.selectedMovie.releaseDate}"
+                app:releaseYear="@{viewModel.selectedMovie.releaseDate}"
                 tools:text="2021" />
 
 
@@ -81,6 +82,7 @@
 
             <TextView
                 android:id="@+id/genre_value"
+                android:paddingLeft="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -102,6 +104,7 @@
 
             <TextView
                 android:id="@+id/vote_average_value"
+                android:paddingLeft="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
