@@ -1,5 +1,6 @@
 package com.example.mymovieapp.network
 
+import com.example.mymovieapp.database.DatabaseMovie
 import com.example.mymovieapp.domain.MovieItem
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -55,12 +56,37 @@ val voteAverage: Double?,
     @Json(name = "vote_count")
 val voteCount: Int?)
 
-/**
- * Convert Network results to database objects
- */
+
 fun NetworkMovieContainer.asDomainModel(): List<MovieItem> {
     return results.map {
         MovieItem(
+            adult = it.adult,
+            backdropPath = it.backdropPath,
+            genreIds = it.genreIds,
+            id = it.id,
+            originalLanguage = it.originalLanguage,
+            originalTitle = it.originalTitle,
+            overview = it.overview,
+            popularity = it.popularity,
+            posterPath = it.posterPath,
+            releaseDate = it.releaseDate,
+            title = it.title,
+            video = it.video,
+            voteAverage = it.voteAverage,
+            voteCount = it.voteCount,
+            posterLink =  BASE_POSTER_URL + it.posterPath
+        )
+    }
+}
+
+
+/**
+ * Convert Network results to database objects
+ */
+
+fun NetworkMovieContainer.asDataBaseModel() : List<DatabaseMovie> {
+    return results.map {
+        DatabaseMovie(
             adult = it.adult,
             backdropPath = it.backdropPath,
             genreIds = it.genreIds,
