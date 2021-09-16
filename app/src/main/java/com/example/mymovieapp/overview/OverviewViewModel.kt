@@ -13,16 +13,11 @@ import kotlinx.coroutines.launch
 
 enum class MovieApiStatus { LOADING, ERROR, DONE }
 
-//class OverviewViewModel(application: Application) : AndroidViewModel(application) {
-class OverviewViewModel : ViewModel() {
+class OverviewViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _status = MutableLiveData<MovieApiStatus>()
     val status: LiveData<MovieApiStatus>
         get() = _status
-
-    private val _movieList = MutableLiveData<List<MovieItem>>()
-    val movieList: LiveData<List<MovieItem>>
-        get() = _movieList
 
     private val _navigateToSelectedMovie= MutableLiveData<MovieItem?>()
     val navigateToSelectedMovie: LiveData<MovieItem?>
@@ -31,44 +26,26 @@ class OverviewViewModel : ViewModel() {
     /**
      * The data source this ViewModel will fetch results from.
      */
-//    private val moviesRepository = MoviesRepository(getDatabase(application))
+    private val moviesRepository = MoviesRepository(getDatabase(application))
 
-//    val movieList = moviesRepository.movies
+    val movieList = moviesRepository.movies
 
     init {
-//        refreshDataFromRepository()
-        getMovies()
+        refreshDataFromRepository()
     }
 
-//
-//    private fun refreshDataFromRepository() {
-//        viewModelScope.launch {
-//            _status.value = MovieApiStatus.LOADING
-//            try {
-//                val movieList = MovieApi.retrofitService.getPopularMovies(API_KEY)
-//                moviesRepository.refreshMovies()
-//                _status.value = MovieApiStatus.DONE
-//            } catch (e: Exception) {
-//                _status.value = MovieApiStatus.ERROR
-//            }
-//        }
-//    }
 
-    private fun getMovies() {
+    private fun refreshDataFromRepository() {
         viewModelScope.launch {
             _status.value = MovieApiStatus.LOADING
             try {
-                val movieList = MovieApi.retrofitService.getPopularMovies(API_KEY)
-                _movieList.postValue(movieList.asDomainModel())
+                moviesRepository.refreshMovies()
                 _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = MovieApiStatus.ERROR
-                _movieList.value = ArrayList()
             }
         }
     }
-
-
 
 
 
