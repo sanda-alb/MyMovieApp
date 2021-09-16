@@ -16,6 +16,7 @@ interface MovieDao {
 }
 
 @Database(entities=[DatabaseMovie::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class MoviesDatabase: RoomDatabase() {
     abstract val movieDao: MovieDao
 }

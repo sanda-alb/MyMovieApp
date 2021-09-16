@@ -9,6 +9,7 @@ import retrofit2.http.Query
 
 const val BASE_URL = "https://api.themoviedb.org/"
 const val API_KEY = "bb340add54f4429cc9cb320eeb25ba8c"
+const val BASE_POSTER_URL = "https://image.tmdb.org/t/p/w500"
 
 val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -22,7 +23,7 @@ val retrofit = Retrofit.Builder()
 
 interface MovieApiService {
     @GET("3/movie/popular")
-    suspend fun getPopularMovies(@Query("api_key") API_KEY: String)
+    suspend fun getPopularMovies(@Query("api_key") apiKey: String)
     : NetworkMovieContainer
 
 }

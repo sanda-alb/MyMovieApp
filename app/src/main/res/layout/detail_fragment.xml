@@ -111,7 +111,7 @@
                 android:textColor="#de000000"
                 app:layout_constraintStart_toEndOf="@+id/vote_average"
                 app:layout_constraintTop_toBottomOf="@+id/genre"
-                android:text="@{viewModel.selectedMovie.voteAverage.toString()}"
+                app:voteAverage="@{viewModel.selectedMovie.voteAverage}"
                 tools:text="7,4" />
 
             <TextView

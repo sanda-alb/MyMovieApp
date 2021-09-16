@@ -68,3 +68,8 @@ fun setReleaseYear(txtView: TextView, releaseDate: String?) {
     val releaseYear = releaseDate?.substring(0, 4)
     txtView.text = releaseYear
 }
+
+@BindingAdapter("voteAverage")
+fun doubleToString(txtView: TextView, voteAverage: Double) {
+    txtView.text = voteAverage.toString()
+}

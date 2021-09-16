@@ -5,7 +5,6 @@ import com.example.mymovieapp.domain.MovieItem
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-const val BASE_POSTER_URL = "https://image.tmdb.org/t/p/w500"
 
 @JsonClass(generateAdapter = true)
 data class NetworkMovieContainer(val page: Int, val results: List<NetworkResults>)
@@ -15,76 +14,53 @@ data class NetworkMovieContainer(val page: Int, val results: List<NetworkResults
 data class NetworkResults(
 
     @Json(name = "adult")
-val adult: Boolean?,
+    val adult: Boolean,
 
     @Json(name = "backdrop_path")
-val backdropPath: String?,
+    val backdropPath: String,
 
     @Json(name = "genre_ids")
-val genreIds: List<Int>?,
+    val genreIds: List<Int>,
 
     @Json(name = "id")
-val id: Int?,
+    val id: Int,
 
     @Json(name = "original_language")
-val originalLanguage: String?,
+    val originalLanguage: String,
 
     @Json(name = "original_title")
-val originalTitle: String?,
+    val originalTitle: String,
 
     @Json(name = "overview")
-val overview: String?,
+    val overview: String,
 
     @Json(name = "popularity")
-val popularity: Double?,
+    val popularity: Double,
 
     @Json(name = "poster_path")
-val posterPath: String?,
+    val posterPath: String,
 
     @Json(name = "release_date")
-val releaseDate: String?,
+    val releaseDate: String,
 
     @Json(name = "title")
-val title: String?,
+    val title: String,
 
     @Json(name = "video")
-val video: Boolean?,
+    val video: Boolean,
 
     @Json(name = "vote_average")
-val voteAverage: Double?,
+    val voteAverage: Double,
 
     @Json(name = "vote_count")
-val voteCount: Int?)
-
-
-fun NetworkMovieContainer.asDomainModel(): List<MovieItem> {
-    return results.map {
-        MovieItem(
-            adult = it.adult,
-            backdropPath = it.backdropPath,
-            genreIds = it.genreIds,
-            id = it.id,
-            originalLanguage = it.originalLanguage,
-            originalTitle = it.originalTitle,
-            overview = it.overview,
-            popularity = it.popularity,
-            posterPath = it.posterPath,
-            releaseDate = it.releaseDate,
-            title = it.title,
-            video = it.video,
-            voteAverage = it.voteAverage,
-            voteCount = it.voteCount,
-            posterLink =  BASE_POSTER_URL + it.posterPath
-        )
-    }
-}
-
+    val voteCount: Int
+)
 
 /**
  * Convert Network results to database objects
  */
 
-fun NetworkMovieContainer.asDataBaseModel() : List<DatabaseMovie> {
+fun NetworkMovieContainer.asDataBaseModel(): List<DatabaseMovie> {
     return results.map {
         DatabaseMovie(
             adult = it.adult,
@@ -101,7 +77,56 @@ fun NetworkMovieContainer.asDataBaseModel() : List<DatabaseMovie> {
             video = it.video,
             voteAverage = it.voteAverage,
             voteCount = it.voteCount,
-            posterLink =  BASE_POSTER_URL + it.posterPath
+            posterLink = BASE_POSTER_URL + it.posterPath
+        )
+    }
+}
+
+fun NetworkMovieContainer.asDomainModel() : List<MovieItem> {
+    return results.map {
+        MovieItem(
+            adult = it.adult,
+            backdropPath = it.backdropPath,
+            genreIds = it.genreIds,
+            id = it.id,
+            originalLanguage = it.originalLanguage,
+            originalTitle = it.originalTitle,
+            overview = it.overview,
+            popularity = it.popularity,
+            posterPath = it.posterPath,
+            releaseDate = it.releaseDate,
+            title = it.title,
+            video = it.video,
+            voteAverage = it.voteAverage,
+            voteCount = it.voteCount,
+            posterLink = BASE_POSTER_URL + it.posterPath
+        )
+    }
+
+}
+
+/**
+ * Map DatabaseMovies to domain entities
+ */
+
+fun List<DatabaseMovie>.asDomainModel(): List<MovieItem> {
+    return map {
+        MovieItem(
+            adult = it.adult,
+            backdropPath = it.backdropPath,
+            genreIds = it.genreIds,
+            id = it.id,
+            originalLanguage = it.originalLanguage,
+            originalTitle = it.originalTitle,
+            overview = it.overview,
+            popularity = it.popularity,
+            posterPath = it.posterPath,
+            releaseDate = it.releaseDate,
+            title = it.title,
+            video = it.video,
+            voteAverage = it.voteAverage,
+            voteCount = it.voteCount,
+            posterLink = it.posterLink
         )
     }
 }
