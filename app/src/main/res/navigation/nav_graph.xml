@@ -14,9 +14,15 @@
             android:id="@+id/action_showDetail"
             app:destination="@id/detailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.mymovieapp.detail.DetailFragment"
-        android:label="DetailFragment"
-        tools:layout="@layout/detail_fragment"/>
+        android:label="DetailFragment">
+        <argument
+            android:name="selectedMovie"
+            app:argType="com.example.mymovieapp.domain.MovieItem" />
+    </fragment>
+
+
 </navigation>

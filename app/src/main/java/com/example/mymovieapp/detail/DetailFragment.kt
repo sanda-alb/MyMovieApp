@@ -10,13 +10,20 @@ import com.example.mymovieapp.R
 import com.example.mymovieapp.databinding.DetailFragmentBinding
 
 class DetailFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        @Suppress("UNUSED_VARIABLE")
         val application = requireNotNull(activity).application
         val binding = DetailFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
+
+        val movieItem = DetailFragmentArgs.fromBundle(requireArguments()).selectedMovie
+        val viewModelFactory = DetailViewModelFactory(movieItem, application)
+        binding.viewModel = ViewModelProvider(
+            this, viewModelFactory
+        ).get(DetailViewModel::class.java)
         return binding.root
     }
 }
